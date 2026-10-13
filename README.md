@@ -21,13 +21,16 @@ PostgreSQL, Gunicorn, Nginx, Docker Compose, GitHub Actions. Фронтенд �
    ```
    docker compose exec backend python manage.py load_ingredients --path /data/ingredients.json
    docker compose exec backend python manage.py load_test_data
+   docker compose exec backend python manage.py load_demo_data   # +20 пользователей, +50 рецептов
    docker compose exec backend python manage.py createsuperuser   # при желании
    ```
 4. Сайт: http://localhost/, API: http://localhost/api/, документация: http://localhost/api/docs/,
    админка: http://localhost/admin/.
 
 `load_test_data` создаёт пользователей `admin` (суперпользователь), `ivan`, `maria`
-(пароль у всех `Foodgram123`) и по одному рецепту от каждого.
+(пароль у всех `Foodgram123`) и по одному рецепту от каждого. `load_demo_data` добавляет
+пользователей `user01`…`user20` и 50 рецептов с картинками. Подробное описание проекта и
+инструкция по переносу на другую машину — в `PROJECT_GUIDE.md`.
 
 Данные хранятся в volumes (`pg_data`, `static`, `media`). Статика Django (админка) раздаётся
 по адресу `/backend_static/`, чтобы не пересекаться с `/static/` фронтенда.
